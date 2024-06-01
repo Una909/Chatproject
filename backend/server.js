@@ -1,4 +1,5 @@
-const express = require("express");
+import express from "express";
+import dotenv from "dotenv";
 
 const app = express();
 
@@ -12,4 +13,4 @@ app.get("/", (req, res) => {
 });
 
 // Start server and listen on port 5000
-app.listen(PORT, () => console.log(`server running on port 5000`));
+app.listen(PORT, () => console.log(`server running on port ${PORT}`));
