@@ -7,10 +7,8 @@ export const signup = async(req, res) => {
             confirmPassword,
             gender
         } = req.body;
-    } catch (error) {
-
-    }
-}
+    } catch (error) {}
+};
 
 export const login = (req, res) => {
     console.log("loginUser");
