@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/userModel.js";
+import genToken from "../utils/genToken.js";
 
 export const signup = async (req, res) => {
   try {
@@ -36,6 +37,7 @@ export const signup = async (req, res) => {
 
     // save user to db
     if (newUser) {
+      genToken(newUser._id, res);
       await newUser.save();
 
       res.status(201).json({
@@ -45,9 +47,8 @@ export const signup = async (req, res) => {
         profilePic: newUser.profilePic,
       });
     } else {
-        res.status(400).json({error:"invalid user data"});
+      res.status(400).json({ error: "invalid user data" });
     }
-    
   } catch (error) {
     console.log("error in signup controller", error.message);
     res.status(500).json({ error: "internal server error" });
